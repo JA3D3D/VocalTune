@@ -146,7 +146,11 @@ inline juce::AudioProcessorValueTreeState::ParameterLayout createLayout()
         p.push_back (std::make_unique<AudioParameterChoice> (ParameterID { pid, v }, name, items, def));
     };
 
-    auto semis = [] (float x, int) { return (x > 0.004f ? "+" : "") + String (x, std::abs (x) < 10 ? 1 : 0) + " st"; };
+    auto semis = [] (float x, int)
+    {
+        if (std::abs (x) < 0.05f) return String ("0.0 st");
+        return (x > 0.0f ? "+" : "") + String (x, std::abs (x) < 10 ? 1 : 0) + " st";
+    };
 
     // ---- voice
     add (id::pitch,   "Pitch",   { -24.0f, 24.0f, 0.01f }, 0.0f, semis);
