@@ -1,0 +1,55 @@
+ok   test singer is detected at a sensible pitch (290.4 Hz)
+ok   C#+ snaps to D in C major
+ok   slightly sharp C stays C
+ok   A# snaps into A minor
+ok   root-only scale snaps to C
+ok   latency is reported (2048 samples)
+ok   with nothing turned on the voice comes out unchanged (SNR 136.4 dB)
+ok   pitch +12: pitch 580.7 Hz (-0.27915 cents off), level -2.0 dB
+ok   pitch -7: pitch 193.9 Hz (0.639451 cents off), level -0.4 dB
+ok   pitch +5 with throat +8 (baby): pitch 387.7 Hz (0.0290992 cents off), level -0.4 dB
+ok   throat -6 alone keeps the pitch: pitch 290.4 Hz (0.0478793 cents off), level -0.0 dB
+ok   throat moves the tone: centroid 418.86 < 605.509 < 850.853 Hz
+ok   hard tune pulls a flat singer onto the notes (40.913 -> 10.2077 cents)
+ok   robot holds one note (167/196 frames on C3)
+ok   VIBRATO: 0% gives dead-straight notes, 100% keeps the singer's vibrato (5.5 vs 9.8 cents)
+ok   FLEX: notes the singer is clearly away from are left alone (32.1 cents)
+ok   HUMANIZE: held notes are corrected more gently (14.8 cents)
+ok   clicking piano keys makes a Custom scale (mask 200)
+ok   the last note can't be switched off
+ok   custom notes are obeyed (230/232 frames on an A)
+ok   the pitch graph gets its history (493 points)
+ok   talk box with Saw follows the words (corr 1.00, level -0.4 dB)
+ok   talk synth sings the singer's notes (286.0 Hz)
+ok   talk box with Super follows the words (corr 1.00, level -0.4 dB)
+ok   talk box with Square follows the words (corr 1.00, level -0.4 dB)
+ok   talk box with Noise follows the words (corr 0.99, level -0.4 dB)
+ok   sample root detected (332.2 Hz)
+ok   a loaded sample talks (corr 1.00)
+ok   follow: the sample sings the singer's notes (286.0 Hz)
+ok   sidechain input can be switched on
+ok   the sidechain sound talks (corr 0.82)
+ok   all 77 presets stay finite 
+ok   no preset is too loud 
+ok   no preset is too quiet 
+ok   25 rounds of DICE / MUTATE stay in range and sound sane
+ok   dice names the new sound (Cosmic Duck*)
+ok   settings come back with the Live set
+ok   the loaded sample is saved inside the Live set (53 KB)
+ok   a user preset can be saved
+ok   it lands in /Users/runner/Music/VocalTune/Presets
+ok   and shows up under User
+ok   and loads back
+ok   arrows step away and back (VocalTune Test 8402)
+ok   works at 44.1 kHz (latency 2048)
+ok   works at 96.0 kHz (latency 4096)
+ok   mono tracks are supported
+ok   mono processing runs
+ok   the window opens at 1040 x 574
+ok   the window resizes and remembers its size
+screenshot: /Users/runner/work/VocalTune/VocalTune/screenshot.png
+ok   the AUTO TOON button flips the window over
+screenshot: /Users/runner/work/VocalTune/VocalTune/auto-toon.png
+ok   the Live set remembers which side was showing
+ok   CPU, everything on: 2.3% of one core
+ALL TESTS PASSED

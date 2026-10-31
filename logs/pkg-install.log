@@ -1,0 +1,15 @@
+installer: Package name is VocalTune
+installer: Installing at base path /
+installer: The install was successful.
+/Library/Audio/Plug-Ins/Components/VocalTune.component/Contents/MacOS:
+total 33304
+drwxr-xr-x  3 root  wheel        96 Oct 31 07:19 .
+drwxr-xr-x  7 root  wheel       224 Oct 31 07:19 ..
+-rwxr-xr-x  1 root  wheel  17051120 Oct 31 07:19 VocalTune
+
+/Library/Audio/Plug-Ins/VST3/VocalTune.vst3/Contents/MacOS:
+total 33496
+drwxr-xr-x  3 root  wheel        96 Oct 31 07:19 .
+drwxr-xr-x  7 root  wheel       224 Oct 31 07:19 ..
+-rwxr-xr-x  1 root  wheel  17147904 Oct 31 07:19 VocalTune
+quarantine flags: 0

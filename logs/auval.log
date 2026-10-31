@@ -1,0 +1,636 @@
+aufx VcTn Bbtl  -  Bass Bible: VocalTune
+
+    AU Validation Tool
+    Version: 1.10.0 
+    Copyright 2003-2019, Apple Inc. All Rights Reserved.
+    Specify -h (-help) for command options
+
+--------------------------------------------------
+VALIDATING AUDIO UNIT: 'aufx' - 'VcTn' - 'Bbtl'
+--------------------------------------------------
+Manufacturer String: Bass Bible
+AudioUnit Name: VocalTune
+Component Version: 1.1.0 (0x10100)
+
+* * PASS
+--------------------------------------------------
+TESTING OPEN TIMES:
+COLD:
+Time to open AudioUnit:         17.289 ms
+WARM:
+Time to open AudioUnit:         1.848  ms
+This AudioUnit is a version 2 implementation.
+FIRST TIME:
+Time for initialization:        1.160 ms
+
+* * PASS
+--------------------------------------------------
+VERIFYING DEFAULT SCOPE FORMATS:
+Input Scope Bus Configuration:
+ Default Bus Count:2
+    Bus Name: Input
+    Format Bus 0: AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+    Bus Name: Sidechain
+    Format Bus 1: AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+    Bus 0, Has Channel Layouts: 0x640001 0x650002 0x660002 0x670002 0x6A0002 
+    Default Layout (bus 0):
+	Tag=0x650002, Num Chan Descs=0
+    Bus 1, Has Channel Layouts: 0x640001 0x650002 0x660002 0x670002 0x6A0002 0x930000 
+    Default Layout (bus 1):
+	Tag=0x650002, Num Chan Descs=0
+
+Output Scope Bus Configuration:
+ Default Bus Count:1
+    Bus Name: Output
+    Default Format: AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+    Has Channel Layouts: 0x640001 0x650002 0x660002 0x670002 0x6A0002 
+    Default Layout:
+	Tag=0x650002, Num Chan Descs=0
+
+* * PASS
+--------------------------------------------------
+VERIFYING REQUIRED PROPERTIES:
+
+* * PASS
+--------------------------------------------------
+VERIFYING RECOMMENDED PROPERTIES:
+  VERIFYING PROPERTY: Latency
+    PASS
+  VERIFYING PROPERTY: Tail Time
+    PASS
+  VERIFYING PROPERTY: Bypass Effect
+    PASS
+
+* * PASS
+--------------------------------------------------
+VERIFYING OPTIONAL PROPERTIES:
+
+* * PASS
+--------------------------------------------------
+VERIFYING SPECIAL PROPERTIES:
+
+VERIFYING CUSTOM UI
+Cocoa Views Available: 1
+  JUCE_AUCocoaViewClass_6265115d8a3f7b3b
+    PASS
+
+HAS FACTORY PRESETS
+    ID:   0    Name: Clean Slate
+
+VERIFYING CLASS INFO
+    PASS
+
+TESTING HOST CALLBACKS
+    PASS
+
+* * PASS
+--------------------------------------------------
+PUBLISHED PARAMETER INFO:
+
+# # # 55 Global Scope Parameters:
+Parameter ID:106079
+Name: Key
+Parameter Type: Indexed
+Values: Minimum = C, Default = C, Maximum = B
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 12
+Value: 0,  String: C
+Value: 1,  String: C#
+Value: 2,  String: D
+Value: 3,  String: D#
+Value: 4,  String: E
+Value: 5,  String: F
+Value: 6,  String: F#
+Value: 7,  String: G
+Value: 8,  String: G#
+Value: 9,  String: A
+Value: 10,  String: A#
+Value: 11,  String: B
+  -parameter PASS
+
+Parameter ID:108124
+Name: Mix
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 100%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3035859
+Name: Buzz
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3107365
+Name: Echo
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3143098
+Name: Fine
+Parameter Type: Generic
+Values: Minimum = -100 ct, Default = 0 ct, Maximum = 100 ct
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3145721
+Name: Flex Tune
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3181398
+Name: Grit
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3552428
+Name: Talk
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3565938
+Name: Tone
+Parameter Type: Generic
+Values: Minimum = Dark 100, Default = Flat, Maximum = Bright 100
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:3571704
+Name: Tune
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:93503710
+Name: Bands
+Parameter Type: Indexed
+Values: Minimum = Smooth, Default = Smooth, Maximum = 8 Bands
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 5
+Value: 0,  String: Smooth
+Value: 1,  String: 32 Bands
+Value: 2,  String: 20 Bands
+Value: 3,  String: 12 Bands
+Value: 4,  String: 8 Bands
+  -parameter PASS
+
+Parameter ID:94636883
+Name: Choir
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:94637148
+Name: Chord
+Parameter Type: Indexed
+Values: Minimum = Single, Default = Single, Maximum = Big Stack
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 10
+Value: 0,  String: Single
+Value: 1,  String: Octaves
+Value: 2,  String: Fifth
+Value: 3,  String: Power
+Value: 4,  String: Major
+Value: 5,  String: Minor
+Value: 6,  String: Sus4
+Value: 7,  String: Major 7
+Value: 8,  String: Minor 7
+Value: 9,  String: Big Stack
+  -parameter PASS
+
+Parameter ID:94940859
+Name: Crush
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:103787271
+Name: Metal
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008766
+Name: Custom Note C
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008767
+Name: Custom Note C#
+Parameter Type: Boolean
+Values: Minimum = Off, Default = Off, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008768
+Name: Custom Note D
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008769
+Name: Custom Note D#
+Parameter Type: Boolean
+Values: Minimum = Off, Default = Off, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008770
+Name: Custom Note E
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008771
+Name: Custom Note F
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008772
+Name: Custom Note F#
+Parameter Type: Boolean
+Values: Minimum = Off, Default = Off, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008773
+Name: Custom Note G
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008774
+Name: Custom Note G#
+Parameter Type: Boolean
+Values: Minimum = Off, Default = Off, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:105008775
+Name: Custom Note A
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:106677056
+Name: Pitch
+Parameter Type: Generic
+Values: Minimum = -24 st, Default = 0.0 st, Maximum = +24 st
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:108270587
+Name: Radio
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:108685930
+Name: Robot
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:109250890
+Name: Scale
+Parameter Type: Indexed
+Values: Minimum = Chromatic, Default = Major, Maximum = Custom
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 14
+Value: 0,  String: Chromatic
+Value: 1,  String: Major
+Value: 2,  String: Minor
+Value: 3,  String: Harmonic Minor
+Value: 4,  String: Dorian
+Value: 5,  String: Phrygian
+Value: 6,  String: Pentatonic Maj
+Value: 7,  String: Pentatonic Min
+Value: 8,  String: Blues
+Value: 9,  String: Double Harmonic
+Value: 10,  String: Whole Tone
+Value: 11,  String: Power (1+5)
+Value: 12,  String: Root Only
+Value: 13,  String: Custom
+  -parameter PASS
+
+Parameter ID:109637894
+Name: Space
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:142170328
+Name: Sample Start
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:142949997
+Name: Sample Mode
+Parameter Type: Indexed
+Values: Minimum = Loop, Default = Loop, Maximum = Retrigger
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 2
+Value: 0,  String: Loop
+Value: 1,  String: Retrigger
+  -parameter PASS
+
+Parameter ID:143164610
+Name: Sample Tune
+Parameter Type: Generic
+Values: Minimum = -24 st, Default = 0.0 st, Maximum = +24 st
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:351849263
+Name: Tune Speed
+Parameter Type: Generic
+Values: Minimum = 0 ms, Default = 25 ms, Maximum = 400 ms
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:355486076
+Name: Robot Note
+Parameter Type: Generic
+Values: Minimum = C1, Default = C3, Maximum = C6
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:438762769
+Name: Wobble Rate
+Parameter Type: Generic
+Values: Minimum = 0.3 Hz, Default = 5.5 Hz, Maximum = 14.0 Hz
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:494519498
+Name: Echo Feedback
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 35%, Maximum = 95%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:540937479
+Name: Humanize
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:554360568
+Name: Talk Sound
+Parameter Type: Indexed
+Values: Minimum = Sample, Default = Saw, Maximum = Sidechain
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+Parameter has Value Strings
+Num Strings = 7
+Value: 0,  String: Sample
+Value: 1,  String: Saw
+Value: 2,  String: Square
+Value: 3,  String: Super
+Value: 4,  String: Pulse
+Value: 5,  String: Noise
+Value: 6,  String: Sidechain
+  -parameter PASS
+
+Parameter ID:565532716
+Name: Decimate
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:681285266
+Name: Echo Time
+Parameter Type: Generic
+Values: Minimum = 20 ms, Default = 280 ms, Maximum = 1500 ms
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:769979205
+Name: Buzz Hz
+Parameter Type: Generic
+Values: Minimum = 10 Hz, Default = 60 Hz, Maximum = 1200 Hz
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:795914398
+Name: Vibrato
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 100%, Maximum = 200%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:797472958
+Name: Sibilance
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 45%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:878525361
+Name: Follow Pitch
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:955321977
+Name: Metal Hz
+Parameter Type: Generic
+Values: Minimum = 40 Hz, Default = 220 Hz, Maximum = 2500 Hz
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1107788177
+Name: Custom Note A#
+Parameter Type: Boolean
+Values: Minimum = Off, Default = Off, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1107788178
+Name: Custom Note B
+Parameter Type: Boolean
+Values: Minimum = Off, Default = On, Maximum = On
+Flags: Values Have Strings, High Resolution, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1141971201
+Name: Output
+Parameter Type: Generic
+Values: Minimum = -24.0 dB, Default = 0.0 dB, Maximum = +12.0 dB
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1193562663
+Name: Space Size
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 60%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1316693890
+Name: Whisper
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1364913297
+Name: Wobble
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 0%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1470039715
+Name: Formant
+Parameter Type: Generic
+Values: Minimum = -12 st, Default = 0.0 st, Maximum = +12 st
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1525098876
+Name: Talk Octave
+Parameter Type: Generic
+Values: Minimum = -2 oct, Default = 0 oct, Maximum = +2 oct
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Parameter ID:1564195625
+Name: Character
+Parameter Type: Generic
+Values: Minimum = 0%, Default = 90%, Maximum = 100%
+Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable 
+  -parameter PASS
+
+Testing that parameters retain value across reset and initialization
+  PASS
+
+* * PASS
+--------------------------------------------------
+FORMAT TESTS:
+
+Reported Channel Capabilities (explicit):
+      [1, 1]  [1, 2]  [2, 1]  [2, 2]  
+
+Input/Output Channel Handling:
+1-1   1-2   1-4   1-5   1-6   1-7   1-8   2-2   2-4   2-5   2-6   2-7   2-8   4-4   4-5   5-5   6-6   7-7   8-8
+X     X                                   X                                                                       
+
+# # AudioChannelLayouts (5), Input Scope:
+ChannelLayout is Writable: T
+The Unit publishes the following Channel Layouts:
+  0x640001, 0x650002, 0x660002, 0x670002, 0x6A0002, 
+
+Is Audio Channel Layout Available:
+Mono    Stereo  Binau.  AU_4    Ambi.   AU_5    AU_5_0  AU_6    AU_6_0  AU_7_0  AU_7_0F AU_8    AU_5_1  AU_6_1  AU_7_1  AU_7_1F 
+X       X       X                                                                                                               
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x640001, Success - did not reset format with mis-matched layout
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x650002, Successsful
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x6A0002, Successsful
+
+# # AudioChannelLayouts (5), Output Scope:
+ChannelLayout is Writable: T
+The Unit publishes the following Channel Layouts:
+  0x640001, 0x650002, 0x660002, 0x670002, 0x6A0002, 
+
+Is Audio Channel Layout Available:
+Mono    Stereo  Binau.  AU_4    Ambi.   AU_5    AU_5_0  AU_6    AU_6_0  AU_7_0  AU_7_0F AU_8    AU_5_1  AU_6_1  AU_7_1  AU_7_1F 
+X       X       X                                                                                                               
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x640001, Success - did not reset format with mis-matched layout
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x650002, Successsful
+
+Current Format:AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Current Format Tag = 0x650002, New Format Tag = 0x6A0002, Successsful
+
+* * PASS
+--------------------------------------------------
+RENDER TESTS:
+
+Input Format: AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Output Format: AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+Render Test at 512 frames
+Slicing Render Test at 64 frames
+  PASS
+
+
+Render Test at 64 frames, sample rate: 22050 Hz
+Render Test at 137 frames, sample rate: 96000 Hz
+Render Test at 4096 frames, sample rate: 48000 Hz
+Render Test at 4096 frames, sample rate: 192000 Hz
+Render Test at 4096 frames, sample rate: 11025 Hz
+Render Test at 512 frames, sample rate: 44100 Hz
+  PASS
+
+1 Channel Test:
+Render Test at 512 frames
+  PASS
+
+1 to 2 Channel Render Test at 256 frames
+  PASS
+
+Checking connection semantics:
+Connection format:
+AudioStreamBasicDescription:  2 ch,  44100 Hz, Float32, deinterleaved
+  PASS
+
+Bad Max Frames - Render should fail
+  PASS
+
+Checking parameter setting
+Using AudioUnitSetParameter
+Using AudioUnitScheduleParameter
+  PASS
+
+Checking ramped parameter scheduling
+  PASS
+
+Test MIDI
+  PASS
+
+* * PASS
+--------------------------------------------------
+AU VALIDATION SUCCEEDED.
+--------------------------------------------------

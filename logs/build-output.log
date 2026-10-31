@@ -1,0 +1,497 @@
+[  0%] Generating juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData.h
+[  1%] Building VST3 manifest helper for VocalTune
+[  2%] Building CXX object CMakeFiles/VocalTuneResources.dir/juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData2.cpp.o
+[  3%] Building CXX object CMakeFiles/VocalTuneResources.dir/juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData1.cpp.o
+[  3%] Building CXX object CMakeFiles/VocalTuneResources.dir/juce_binarydata_VocalTuneResources/JuceLibraryCode/BinaryData3.cpp.o
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+[  4%] Linking CXX static library libVocalTuneResources.a
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/runner/work/VocalTune/VocalTune/build/vst3_helpers/VocalTune
+make[3]: warning: jobserver unavailable: using -j1.  Add `+' to parent make rule.
+[ 50%] Building CXX object CMakeFiles/vst3_helper.dir/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3ManifestHelper.cpp.o
+[100%] Linking CXX executable vst3_helper
+[  4%] Built target VocalTuneResources
+[  5%] Building CXX object CMakeFiles/VocalTune.dir/Source/PluginEditor.cpp.o
+[  5%] Building CXX object CMakeFiles/VocalTune.dir/Source/PluginProcessor.cpp.o
+[  6%] Building CXX object CMakeFiles/VocalTuneTests.dir/tests/PluginTests.cpp.o
+[100%] Built target vst3_helper
+[  6%] Built target VocalTune_vst3_helper
+[  7%] Building CXX object CMakeFiles/VocalTune.dir/Source/AutoToonPage.cpp.o
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.h:2:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.cpp:116:33: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+  116 |         if (s != lastSeen || st != lastStart) { lastSeen = s; lastStart = st; repaint(); }
+      |                              ~~ ^  ~~~~~~~~~
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/AutoToonPage.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/AutoToonPage.h:3:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+6 warnings generated.
+6 warnings generated.
+7 warnings generated.
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/AutoToonPage.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/AutoToonPage.h:3:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.h:2:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/PluginProcessor.h:6:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/PluginEditor.cpp:116:33: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+  116 |         if (s != lastSeen || st != lastStart) { lastSeen = s; lastStart = st; repaint(); }
+      |                              ~~ ^  ~~~~~~~~~
+6 warnings generated.
+[  7%] Building CXX object CMakeFiles/VocalTuneTests.dir/Source/PluginProcessor.cpp.o
+6 warnings generated.
+[  8%] Building CXX object CMakeFiles/VocalTuneTests.dir/Source/PluginEditor.cpp.o
+[  8%] Building CXX object CMakeFiles/VocalTune.dir/Source/Presets.cpp.o
+7 warnings generated.
+[  9%] Building CXX object CMakeFiles/VocalTuneTests.dir/Source/AutoToonPage.cpp.o
+[ 10%] Building CXX object CMakeFiles/VocalTune.dir/Source/dsp/SpectralEngine.cpp.o
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+[ 11%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_processors/juce_audio_processors.mm.o
+[ 11%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.mm.o
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:102:31: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  102 |             work[(size_t) 2 * k] = v;
+      |                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:103:31: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  103 |             work[(size_t) 2 * k + 1] = 0.0f;
+      |                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:111:66: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  111 |         for (int k = 0; k <= half; ++k) e[k] = work[(size_t) 2 * k];
+      |                                                                ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:156:27: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+  156 |             else if (cand != currentNote && std::abs (naturalMidi - cand) < std::abs (naturalMidi - currentNote) - 0.18f)
+      |                      ~~~~ ^  ~~~~~~~~~~~
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:172:29: warning: declaration shadows a field of 'vt::SpectralEngine' [-Wshadow]
+  172 |                 const float window = 1.0f - 0.9f * s.flex;
+      |                             ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:62:24: note: previous declaration is here
+   62 |     std::vector<float> window, inBuf, carBuf, outAccum, outHop, work, work2, cwork;
+      |                        ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:223:67: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  223 |         X[(size_t) k] = { work[(size_t) 2 * k], work[(size_t) 2 * k + 1] };
+      |                                                                 ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:223:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  223 |         X[(size_t) k] = { work[(size_t) 2 * k], work[(size_t) 2 * k + 1] };
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:335:86: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  335 |             cmag[(size_t) k] = std::hypot (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:335:63: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  335 |             cmag[(size_t) k] = std::hypot (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:364:88: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  364 |                 const std::complex<float> c (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                                                      ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:364:65: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  364 |                 const std::complex<float> c (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                               ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:401:27: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  401 |         work[(size_t) 2 * k] = Y[(size_t) k].real();
+      |                         ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:402:27: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  402 |         work[(size_t) 2 * k + 1] = Y[(size_t) k].imag();
+      |                         ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:405:23: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  405 |     work[(size_t) 2 * half + 1] = 0.0f;
+      |                     ~ ^~~~
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:136:79: warning: unused parameter 'sample' [-Wunused-parameter]
+  136 | void SpectralEngine::processFrame (const EngineSettings& s, const SampleData* sample)
+      |                                                                               ^
+[ 11%] Building CXX object CMakeFiles/VocalTuneTests.dir/Source/Presets.cpp.o
+21 warnings generated.
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:1:
+In file included from /Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:8:
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:57:70: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   57 |             const float ar = a[(size_t) 2 * k], ai = -a[(size_t) 2 * k + 1];   // conj(A)
+      |                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:58:69: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   58 |             const float br = b[(size_t) 2 * k], bi = b[(size_t) 2 * k + 1];
+      |                                                                   ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:59:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   59 |             a[(size_t) 2 * k]     = ar * br - ai * bi;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/PitchDetector.h:60:28: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+   60 |             a[(size_t) 2 * k + 1] = ar * bi + ai * br;
+      |                          ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:102:31: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  102 |             work[(size_t) 2 * k] = v;
+      |                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:103:31: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  103 |             work[(size_t) 2 * k + 1] = 0.0f;
+      |                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:111:66: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  111 |         for (int k = 0; k <= half; ++k) e[k] = work[(size_t) 2 * k];
+      |                                                                ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:156:27: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+  156 |             else if (cand != currentNote && std::abs (naturalMidi - cand) < std::abs (naturalMidi - currentNote) - 0.18f)
+      |                      ~~~~ ^  ~~~~~~~~~~~
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:172:29: warning: declaration shadows a field of 'vt::SpectralEngine' [-Wshadow]
+  172 |                 const float window = 1.0f - 0.9f * s.flex;
+      |                             ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.h:62:24: note: previous declaration is here
+   62 |     std::vector<float> window, inBuf, carBuf, outAccum, outHop, work, work2, cwork;
+      |                        ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:223:67: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  223 |         X[(size_t) k] = { work[(size_t) 2 * k], work[(size_t) 2 * k + 1] };
+      |                                                                 ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:223:45: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  223 |         X[(size_t) k] = { work[(size_t) 2 * k], work[(size_t) 2 * k + 1] };
+      |                                           ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:335:86: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  335 |             cmag[(size_t) k] = std::hypot (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                                                    ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:335:63: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  335 |             cmag[(size_t) k] = std::hypot (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                             ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:364:88: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  364 |                 const std::complex<float> c (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                                                      ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:364:65: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  364 |                 const std::complex<float> c (cwork[(size_t) 2 * k], cwork[(size_t) 2 * k + 1]);
+      |                                                               ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:401:27: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  401 |         work[(size_t) 2 * k] = Y[(size_t) k].real();
+      |                         ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:402:27: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  402 |         work[(size_t) 2 * k + 1] = Y[(size_t) k].imag();
+      |                         ~ ^
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:405:23: warning: implicit conversion changes signedness: 'int' to 'size_t' (aka 'unsigned long') [-Wsign-conversion]
+  405 |     work[(size_t) 2 * half + 1] = 0.0f;
+      |                     ~ ^~~~
+/Users/runner/work/VocalTune/VocalTune/Source/dsp/SpectralEngine.cpp:136:79: warning: unused parameter 'sample' [-Wunused-parameter]
+  136 | void SpectralEngine::processFrame (const EngineSettings& s, const SampleData* sample)
+      |                                                                               ^
+21 warnings generated.
+[ 12%] Building CXX object CMakeFiles/VocalTuneTests.dir/Source/dsp/SpectralEngine.cpp.o
+[ 13%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_processors/juce_audio_processors.mm.o
+[ 14%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.mm.o
+[ 14%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 15%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_2.cpp.o
+[ 16%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 16%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 17%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 18%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_3.cpp.o
+[ 19%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_4.cpp.o
+[ 19%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_basics/juce_gui_basics_5.cpp.o
+[ 20%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.mm.o
+In file included from /Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.mm:35:
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: warning: This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored [-W#pragma-messages]
+   61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_core/system/juce_PlatformDefs.h:292:38: note: expanded from macro 'JUCE_COMPILER_WARNING'
+  292 |  #define JUCE_COMPILER_WARNING(msg)  _Pragma (JUCE_STRINGIFY (message (msg)))
+      |                                      ^
+<scratch space>:190:2: note: expanded from here
+  190 |  message ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+[ 21%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+[ 21%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+1 warning generated.
+[ 22%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.mm.o
+[ 23%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_1.c.o
+In file included from /Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.mm:35:
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: warning: This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored [-W#pragma-messages]
+   61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_core/system/juce_PlatformDefs.h:292:38: note: expanded from macro 'JUCE_COMPILER_WARNING'
+  292 |  #define JUCE_COMPILER_WARNING(msg)  _Pragma (JUCE_STRINGIFY (message (msg)))
+      |                                      ^
+<scratch space>:87:2: note: expanded from here
+   87 |  message ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+In file included from /Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.mm:35:
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: warning: This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored [-W#pragma-messages]
+   61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_core/system/juce_PlatformDefs.h:292:38: note: expanded from macro 'JUCE_COMPILER_WARNING'
+  292 |  #define JUCE_COMPILER_WARNING(msg)  _Pragma (JUCE_STRINGIFY (message (msg)))
+      |                                      ^
+<scratch space>:190:2: note: expanded from here
+  190 |  message ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+[ 24%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_2.c.o
+[ 24%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_3.c.o
+[ 25%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o
+1 warning generated.
+[ 25%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_Sheenbidi.c.o
+[ 26%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_1.c.o
+1 warning generated.
+[ 27%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libpng.c.o
+In file included from /Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.mm:35:
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp:61:2: warning: This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored [-W#pragma-messages]
+   61 |  JUCE_COMPILER_WARNING ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+/Users/runner/work/VocalTune/VocalTune/JUCE/modules/juce_core/system/juce_PlatformDefs.h:292:38: note: expanded from macro 'JUCE_COMPILER_WARNING'
+  292 |  #define JUCE_COMPILER_WARNING(msg)  _Pragma (JUCE_STRINGIFY (message (msg)))
+      |                                      ^
+<scratch space>:87:2: note: expanded from here
+   87 |  message ("This version of JUCE does not use the splash screen, the flag JUCE_DISPLAY_SPLASH_SCREEN is ignored")
+      |  ^
+[ 28%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_2.c.o
+[ 29%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libjpg_3.c.o
+[ 29%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libpng.c.o
+[ 30%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dec.c.o
+1 warning generated.
+[ 30%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec.c.o
+[ 31%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dec.c.o
+[ 32%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec_avx2.c.o
+[ 33%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec.c.o
+[ 33%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec_avx2.c.o
+[ 34%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec_sse41.c.o
+[ 35%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc.c.o
+[ 36%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_dec_sse41.c.o
+[ 36%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc_avx2.c.o
+[ 36%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc.c.o
+[ 37%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc_sse41.c.o
+[ 38%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc_avx2.c.o
+[ 39%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_dsp_enc_sse41.c.o
+[ 40%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_enc.c.o
+[ 41%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_enc.c.o
+[ 41%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_sharpyuv.c.o
+[ 41%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_sharpyuv.c.o
+[ 42%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_utils.c.o
+[ 43%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_libwebp_utils.c.o
+[ 44%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics_lunasvg.c.o
+[ 45%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics_lunasvg.c.o
+[ 46%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_graphics/juce_graphics.mm.o
+[ 46%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_graphics/juce_graphics.mm.o
+[ 47%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_events/juce_events.mm.o
+[ 48%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 48%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_events/juce_events.mm.o
+[ 48%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_core/juce_core_zlib.c.o
+[ 49%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_core/juce_core_CompilationTime.cpp.o
+[ 50%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_core/juce_core.mm.o
+[ 51%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_core/juce_core_zlib.c.o
+[ 52%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_data_structures/juce_data_structures.mm.o
+[ 52%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_core/juce_core.mm.o
+[ 53%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_data_structures/juce_data_structures.mm.o
+[ 54%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 55%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless_ara.cpp.o
+[ 55%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 56%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless.mm.o
+[ 56%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless_lv2_libs.cpp.o
+[ 57%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_basics/juce_audio_basics.mm.o
+[ 57%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_utils/juce_audio_utils.mm.o
+[ 58%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_processors_headless/juce_audio_processors_headless.mm.o
+[ 59%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_flac_1.c.o
+[ 60%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_basics/juce_audio_basics.mm.o
+[ 60%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_utils/juce_audio_utils.mm.o
+[ 61%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_flac_2.c.o
+[ 61%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_ogg.c.o
+[ 62%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_flac_1.c.o
+[ 63%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_opus.c.o
+[ 64%] Building C object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_opusfile.c.o
+[ 65%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_flac_2.c.o
+[ 66%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_ogg.c.o
+[ 66%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_formats/juce_audio_formats.mm.o
+[ 66%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_opus.c.o
+[ 67%] Building C object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats_opusfile.c.o
+[ 68%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_audio_devices/juce_audio_devices.mm.o
+[ 69%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_formats/juce_audio_formats.mm.o
+[ 69%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_audio_devices/juce_audio_devices.mm.o
+[ 70%] Building CXX object CMakeFiles/VocalTune.dir/JUCE/modules/juce_dsp/juce_dsp.mm.o
+[ 71%] Building CXX object CMakeFiles/VocalTuneTests.dir/JUCE/modules/juce_dsp/juce_dsp.mm.o
+[ 72%] Linking CXX static library VocalTune_artefacts/Release/libVocalTune_SharedCode.a
+[ 72%] Built target VocalTune
+[ 72%] Generating VocalTune_artefacts/JuceLibraryCode/VocalTune_AU/PkgInfo
+[ 72%] Generating VocalTune_artefacts/JuceLibraryCode/VocalTune_Standalone/PkgInfo
+[ 74%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 74%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 75%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 76%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 78%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 78%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 78%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 79%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.mm.o
+[ 80%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_1.mm.o
+[ 80%] Generating VocalTune_artefacts/JuceLibraryCode/VocalTune_VST3/PkgInfo
+[ 81%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
+[ 82%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 83%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 83%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 84%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.mm.o
+[ 85%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_1.mm.o
+[ 85%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_2.mm.o
+[ 86%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AUv3.mm.o
+[ 87%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.mm.o
+[ 87%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.mm.o
+[ 88%] Building CXX object CMakeFiles/VocalTune_VST3.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.mm.o
+[ 88%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 89%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.mm.o
+[ 90%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_1.mm.o
+[ 90%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_2.mm.o
+[ 91%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AUv3.mm.o
+[ 92%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.mm.o
+[ 92%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.mm.o
+[ 93%] Building CXX object CMakeFiles/VocalTune_Standalone.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.mm.o
+Copying OS X content VocalTune_artefacts/Release/Standalone/VocalTune.app/Contents/Resources/AppIcon.icns
+Copying OS X content VocalTune_artefacts/Release/Standalone/VocalTune.app/Contents/Resources/RecentFilesMenuTemplate.nib
+[ 94%] Linking CXX executable VocalTune_artefacts/Release/Standalone/VocalTune.app/Contents/MacOS/VocalTune
+[ 95%] Linking CXX executable VocalTuneTests_artefacts/Release/VocalTuneTests
+[ 95%] Built target VocalTuneTests
+[ 95%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AU_2.mm.o
+Copying OS X content VocalTune_artefacts/Release/VST3/VocalTune.vst3/Contents/Resources/AppIcon.icns
+[ 96%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_AUv3.mm.o
+[ 97%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.mm.o
+[ 97%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.mm.o
+[ 98%] Building CXX object CMakeFiles/VocalTune_AU.dir/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.mm.o
+Copying OS X content VocalTune_artefacts/Release/AU/VocalTune.component/Contents/Resources/AppIcon.icns
+[ 99%] Linking CXX CFBundle shared module VocalTune_artefacts/Release/AU/VocalTune.component/Contents/MacOS/VocalTune
+[100%] Linking CXX CFBundle shared module VocalTune_artefacts/Release/VST3/VocalTune.vst3/Contents/MacOS/VocalTune
+[100%] Built target VocalTune_AU
+[100%] Built target VocalTune_Standalone
+/Users/runner/work/VocalTune/VocalTune/build/VocalTune_artefacts/Release/VST3/VocalTune.vst3: code object is not signed at all
+-- Replacing invalid signature with ad-hoc signature
+/Users/runner/work/VocalTune/VocalTune/build/VocalTune_artefacts/Release/VST3/VocalTune.vst3: replacing existing signature
+removing moduleinfo.json
+creating /Users/runner/work/VocalTune/VocalTune/build/VocalTune_artefacts/Release/VST3/VocalTune.vst3/Contents/Resources/moduleinfo.json
+[100%] Built target VocalTune_VST3
