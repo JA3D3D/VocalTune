@@ -9,6 +9,7 @@
 #include "Carrier.h"
 #include <atomic>
 #include <complex>
+#include <array>
 
 namespace vt
 {
@@ -16,6 +17,7 @@ struct EngineSettings
 {
     float pitchSemis = 0, formantSemis = 0, whisper = 0, wobble = 0, wobbleRate = 5;
     float tune = 0, tuneSpeedMs = 25; int key = 0; int scaleMask = 0xFFF;
+    float humanize = 0, flex = 0, vibratoKeep = 1;   // Auto Toon
     float robot = 0, robotNote = 48;
     float talk = 0; int talkOctave = 0; int bands = 0; float character = 0.9f, sibilance = 0.4f;
     CarrierGen::Settings carrier;
@@ -34,6 +36,12 @@ public:
 
     // read by the GUI
     std::atomic<float> detectedMidi { -1.0f }, targetMidi { -1.0f }, inputLevel { 0.0f };
+
+    // pitch history for the Auto Toon graph: one entry per hop (about 10 ms), -1 = no pitch
+    static constexpr int historySize = 1024;
+    std::array<std::atomic<float>, historySize> historyIn, historyOut;
+    std::atomic<int> historyWrite { 0 };
+    float getHopSeconds() const { return hopSeconds; }
 
     // scale snapping, exposed for the tests
     static float snapToScale (float midi, int key, int mask);
@@ -57,6 +65,7 @@ private:
     std::vector<int> peaks;
     int counter = 0;
 
+    float currentNote = -1.0f, slowMidi = 0.0f, heldSeconds = 0.0f;
     float corr = 0.0f, lfoPhase = 0.0f, carrierMidi = 48.0f, talkGain = 0.0f, voiceNorm = 1.0f;
     int quietFrames = 100;
     juce::Random rng;

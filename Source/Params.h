@@ -21,6 +21,11 @@ namespace id
     inline constexpr const char* scale       = "scale";
     inline constexpr const char* robot       = "robot";
     inline constexpr const char* robotNote   = "robotNote";
+    // Auto Toon
+    inline constexpr const char* humanize    = "humanize";
+    inline constexpr const char* flex        = "flex";
+    inline constexpr const char* vibratoKeep = "vibratoKeep";
+    inline juce::String note (int pc) { return "note" + juce::String (pc); }   // custom scale, C..B
     // talk engine
     inline constexpr const char* talk        = "talk";
     inline constexpr const char* carrier     = "carrier";
@@ -78,6 +83,7 @@ inline const std::vector<ScaleDef>& scales()
         { "Whole Tone",     m ({ 0, 2, 4, 6, 8, 10 }) },
         { "Power (1+5)",    m ({ 0, 7 }) },
         { "Root Only",      m ({ 0 }) },
+        { "Custom",         0 },   // the Auto Toon piano decides
     };
     return s;
 }
@@ -166,6 +172,14 @@ inline juce::AudioProcessorValueTreeState::ParameterLayout createLayout()
     choice (id::key, "Key", vt::keyNames(), 0);
     { StringArray s; for (auto& d : scales()) s.add (d.name); choice (id::scale, "Scale", s, 1); }
     amount (id::robot, "Robot");
+    amount (id::humanize, "Humanize");
+    amount (id::flex, "Flex Tune");
+    add (id::vibratoKeep, "Vibrato", { 0.0f, 2.0f }, 1.0f, [] (float x, int) { return String (roundToInt (x * 100.0f)) + "%"; });
+    for (int pc = 0; pc < 12; ++pc)
+    {
+        const bool inC = ((0xAB5 >> pc) & 1) != 0;   // C major to start with
+        p.push_back (std::make_unique<AudioParameterBool> (ParameterID { id::note (pc), v }, "Custom Note " + keyNames()[pc], inC));
+    }
     add (id::robotNote, "Robot Note", { 24.0f, 84.0f, 1.0f }, 48.0f, [] (float x, int) { return noteName (x); });
 
     // ---- talk

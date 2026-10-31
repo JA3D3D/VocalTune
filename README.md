@@ -6,9 +6,11 @@ Toy box voice lab for Ableton Live (VST3 + Audio Unit, Mac).
 - **Talk box**: drop any sample (or pick a built-in synth, noise, or the sidechain) and your voice makes it talk, sing your notes, in chords.
 - **Tune & Robot**: snap to a key and scale, or flatten to one note.
 - **Effects**: buzz, crush, grit, tone, metal, radio, choir, echo, space.
-- **67 presets**, DICE (random), MUTATE (nudge), and your own saved presets.
+- **Auto Toon**: flip the plugin over for a full auto-tune in a 1930s inkwell cartoon style: retune speed, humanize, flex-tune, vibrato control, pick-your-notes piano, a live pitch graph and a singing microphone.
+- **77 presets**, DICE (random), MUTATE (nudge), and your own saved presets.
 
 ![VocalTune](docs/screenshot.png)
+![Auto Toon](docs/auto-toon.png)
 
 ## Getting the plugin
 

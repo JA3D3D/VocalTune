@@ -59,6 +59,9 @@ void SpectralEngine::reset()
     quietFrames = 100;
     detectedMidi = -1.0f;
     targetMidi = -1.0f;
+    currentNote = -1.0f;
+    for (auto& h : historyIn) h.store (-1.0f);
+    for (auto& h : historyOut) h.store (-1.0f);
 }
 
 void SpectralEngine::inv (float* d) const
@@ -141,14 +144,47 @@ void SpectralEngine::processFrame (const EngineSettings& s, const SampleData* sa
     if (voiced)
     {
         float want = 0.0f;
-        if (s.tune > 0.0f) want = s.tune * (snapToScale (naturalMidi, s.key, s.scaleMask) - naturalMidi);
+        float speedMs = std::max (s.tuneSpeedMs, 0.0f);
+        if (s.tune > 0.0f)
+        {
+            // pick the target note, sticking with the current one until another is clearly closer
+            const float cand = snapToScale (naturalMidi, s.key, s.scaleMask);
+            if (currentNote < 0.0f)
+            {
+                currentNote = cand; heldSeconds = 0.0f; slowMidi = naturalMidi;
+            }
+            else if (cand != currentNote && std::abs (naturalMidi - cand) < std::abs (naturalMidi - currentNote) - 0.18f)
+            {
+                currentNote = cand; heldSeconds = 0.0f; slowMidi = naturalMidi;
+            }
+            heldSeconds += hopSeconds;
+
+            // split the sung pitch into the note being held and its vibrato
+            slowMidi += (naturalMidi - slowMidi) * (1.0f - std::exp (-hopSeconds / 0.09f));
+            const float vibGate = juce::jlimit (0.0f, 1.0f, (heldSeconds - 0.05f) / 0.12f);
+            const float vib = juce::jlimit (-1.0f, 1.0f, naturalMidi - slowMidi) * vibGate;
+            const float desired = currentNote + s.vibratoKeep * vib;
+
+            // flex: leave notes alone when the singer is clearly sliding away on purpose
+            float flexW = 1.0f;
+            if (s.flex > 0.0f)
+            {
+                const float window = 1.0f - 0.9f * s.flex;
+                const float dist = std::abs (slowMidi - currentNote);
+                if (dist > window) flexW = juce::jlimit (0.0f, 1.0f, 1.0f - (dist - window) / 0.15f);
+            }
+            want = s.tune * flexW * (desired - naturalMidi);
+            // humanize: long held notes get a gentler retune than the moves between them
+            speedMs += s.humanize * 350.0f * juce::jlimit (0.0f, 1.0f, heldSeconds / 0.3f);
+        }
         if (s.robot > 0.0f) want = want * (1.0f - s.robot) + s.robot * (s.robotNote - naturalMidi);
-        const float speed = std::max (s.tuneSpeedMs, 0.0f) * 0.001f;
+        const float speed = speedMs * 0.001f;
         const float a = speed <= 0.001f ? 1.0f : 1.0f - std::exp (-hopSeconds / speed);
         corr += (want - corr) * a;
     }
     else
     {
+        currentNote = -1.0f;
         corr *= std::exp (-hopSeconds / 0.25f);   // let go slowly between words
     }
 
@@ -162,6 +198,12 @@ void SpectralEngine::processFrame (const EngineSettings& s, const SampleData* sa
     carrier.setTargetHz (440.0f * std::exp2 ((carrierMidi + corr + s.pitchSemis + wob + 12.0f * (float) s.talkOctave - 69.0f) / 12.0f));
     detectedMidi = voiced ? naturalMidi : -1.0f;
     targetMidi = voiced ? naturalMidi + shiftSemis : -1.0f;
+    {
+        const int w = historyWrite.load (std::memory_order_relaxed);
+        historyIn[(size_t) w].store (voiced ? naturalMidi : -1.0f, std::memory_order_relaxed);
+        historyOut[(size_t) w].store (voiced ? naturalMidi + shiftSemis : -1.0f, std::memory_order_relaxed);
+        historyWrite.store ((w + 1) % historySize, std::memory_order_release);
+    }
 
     // new word? (for the sample's retrigger mode)
     if (p.rms < 0.003f) ++quietFrames;

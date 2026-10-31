@@ -191,11 +191,12 @@ static void writeWav (const juce::File& f, const juce::AudioBuffer<float>& b, do
 int main (int argc, char** argv)
 {
     juce::ScopedJuceInitialiser_GUI gui;
-    juce::File renderDir, shotFile;
+    juce::File renderDir, shotFile, toonShot;
     for (int i = 1; i + 1 < argc; ++i)
     {
         if (juce::String (argv[i]) == "--render") renderDir = juce::File::getCurrentWorkingDirectory().getChildFile (argv[i + 1]);
         if (juce::String (argv[i]) == "--screenshot") shotFile = juce::File::getCurrentWorkingDirectory().getChildFile (argv[i + 1]);
+        if (juce::String (argv[i]) == "--screenshot-toon") toonShot = juce::File::getCurrentWorkingDirectory().getChildFile (argv[i + 1]);
     }
 
     const double sr = 48000.0;
@@ -297,6 +298,59 @@ int main (int argc, char** argv)
             if (r.hz > 0 && r.aperiodicity < 0.2f) { ++voicedFrames; if (std::abs (1200 * std::log2 (r.hz / 130.81f)) < 50) ++onNote; }
         }
         ok (voicedFrames > 20 && onNote > voicedFrames * 0.75, "robot holds one note (" + juce::String (onNote) + "/" + juce::String (voicedFrames) + " frames on C3)");
+    }
+
+    // ---------------------------------------------------------------- Auto Toon
+    {
+        std::vector<float> t2;
+        const auto flat = makeVoice (sr, &t2, -40.0f);
+        // mean distance from the nearest note, over pitched frames
+        auto meanCents = [&] (const juce::AudioBuffer<float>& a)
+        {
+            PitchDetector d; d.prepare (sr, 11);
+            double sum = 0; int n = 0;
+            for (int p = 0; p + 2048 <= a.getNumSamples(); p += 512)
+            {
+                auto r = d.detect (a.getReadPointer (0) + p);
+                if (r.hz > 0 && r.aperiodicity < 0.2f) { const float m = 69 + 12 * std::log2 (r.hz / 440); sum += std::abs (100 * (m - std::round (m))); ++n; }
+            }
+            return n > 0 ? (float) (sum / n) : 999.0f;
+        };
+        auto run = [&] (std::function<void()> setup)
+        {
+            resetAll (proc); setP (proc, id::tune, 1); setP (proc, id::scale, 0); setP (proc, id::tuneSpeed, 0); setup();
+            proc.prepareToPlay (sr, 480);
+            return aligned (runPlugin (proc, flat, sr), lat, flat.getNumSamples());
+        };
+        const float straight = meanCents (run ([&] { setP (proc, id::vibratoKeep, 0); }));
+        const float natural = meanCents (run ([&] { setP (proc, id::vibratoKeep, 1); }));
+        ok (straight < 6.0f && natural > straight * 1.5f, "VIBRATO: 0% gives dead-straight notes, 100% keeps the singer's vibrato (" + juce::String (straight, 1) + " vs " + juce::String (natural, 1) + " cents)");
+        const float flexed = meanCents (run ([&] { setP (proc, id::vibratoKeep, 0); setP (proc, id::flex, 1); }));
+        ok (flexed > 25.0f, "FLEX: notes the singer is clearly away from are left alone (" + juce::String (flexed, 1) + " cents)");
+        const float human = meanCents (run ([&] { setP (proc, id::vibratoKeep, 0); setP (proc, id::humanize, 1); }));
+        ok (human > straight + 2.0f && human < 35.0f, "HUMANIZE: held notes are corrected more gently (" + juce::String (human, 1) + " cents)");
+
+        // piano: only A allowed -> everything lands on an A
+        resetAll (proc);
+        for (int pc : { 0, 2, 4, 5, 7, 11 }) proc.toggleNote (pc);   // C major minus everything but A
+        ok (proc.absoluteNoteMask() == (1 << 9) && juce::roundToInt (proc.state.getRawParameterValue (id::scale)->load()) == (int) scales().size() - 1,
+            "clicking piano keys makes a Custom scale (mask " + juce::String::toHexString (proc.absoluteNoteMask()) + ")");
+        proc.toggleNote (9);
+        ok (proc.absoluteNoteMask() == (1 << 9), "the last note can't be switched off");
+        setP (proc, id::tune, 1); setP (proc, id::tuneSpeed, 0); setP (proc, id::vibratoKeep, 0);
+        proc.prepareToPlay (sr, 480);
+        auto a = aligned (runPlugin (proc, voice, sr), lat, voice.getNumSamples());
+        PitchDetector d; d.prepare (sr, 11);
+        int voicedFrames = 0, onA = 0;
+        for (int p = 0; p + 2048 <= a.getNumSamples(); p += 1024)
+        {
+            auto r = d.detect (a.getReadPointer (0) + p);
+            if (r.hz > 0 && r.aperiodicity < 0.2f) { ++voicedFrames; const int m = juce::roundToInt (69 + 12 * std::log2 (r.hz / 440)); if (((m % 12) + 12) % 12 == 9) ++onA; }
+        }
+        ok (voicedFrames > 20 && onA > voicedFrames * 0.85, "custom notes are obeyed (" + juce::String (onA) + "/" + juce::String (voicedFrames) + " frames on an A)");
+        int filled = 0;
+        for (auto& h : proc.engine.historyOut) if (h.load() > 0) ++filled;
+        ok (filled > 200, "the pitch graph gets its history (" + juce::String (filled) + " points)");
     }
 
     // ---------------------------------------------------------------- talk box
@@ -476,6 +530,7 @@ int main (int argc, char** argv)
         p.loadSampleBuffer (makePluck (sr, 196.0f), sr, "Dog Bark");
         p.applyPreset (p.presetList()[21]);
         std::unique_ptr<juce::AudioProcessorEditor> ed (p.createEditor());
+        ed->setVisible (true);   // hosts do this when they open the window
         ok (ed != nullptr && ed->getWidth() == VocalTuneEditor::baseW, "the window opens at " + juce::String (ed->getWidth()) + " x " + juce::String (ed->getHeight()));
         // feed a little audio so the tuner shows notes
         runPlugin (p, voice, sr, 512);
@@ -491,6 +546,38 @@ int main (int argc, char** argv)
             juce::PNGImageFormat().writeImageToStream (img, os);
             std::cout << "screenshot: " << shotFile.getFullPathName() << std::endl;
         }
+        // flip to Auto Toon while a singer is going, so the graph and the singer have something to show
+        auto* vte = dynamic_cast<VocalTuneEditor*> (ed.get());
+        for (auto& e : p.presetList()) if (e.name == "Pop Polish") p.applyPreset (e);
+        vte->showPage (1);
+        ok (p.page == 1, "the AUTO TOON button flips the window over");
+        {
+            juce::AudioBuffer<float> part (1, (int) (sr * 2.6));
+            part.copyFrom (0, 0, voice, 0, 0, part.getNumSamples());
+            // feed it in real-time-ish slices so the graph scrolls like it would in Live
+            juce::AudioBuffer<float> slice (1, 4800);
+            for (int pos = 0; pos + 4800 <= part.getNumSamples(); pos += 4800)
+            {
+                slice.copyFrom (0, 0, part, 0, pos, 4800);
+                juce::AudioBuffer<float> io (2, 4800);
+                io.copyFrom (0, 0, slice, 0, 0, 4800); io.copyFrom (1, 0, slice, 0, 0, 4800);
+                juce::MidiBuffer m;
+                for (int b = 0; b < 4800; b += 480) { juce::AudioBuffer<float> v (io.getArrayOfWritePointers(), 2, b, 480); p.processBlock (v, m); }
+                juce::MessageManager::getInstance()->runDispatchLoopUntil (40);
+            }
+        }
+        if (toonShot != juce::File())
+        {
+            auto img = ed->createComponentSnapshot (ed->getLocalBounds(), true, 2.0f);
+            toonShot.deleteFile();
+            juce::FileOutputStream os (toonShot);
+            juce::PNGImageFormat().writeImageToStream (img, os);
+            std::cout << "screenshot: " << toonShot.getFullPathName() << std::endl;
+        }
+        juce::MemoryBlock mb; p.getStateInformation (mb);
+        VocalTuneProcessor q; q.setStateInformation (mb.getData(), (int) mb.getSize());
+        ok (q.page == 1, "the Live set remembers which side was showing");
+        vte->showPage (0);
     }
 
     // ---------------------------------------------------------------- CPU

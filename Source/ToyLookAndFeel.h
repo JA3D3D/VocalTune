@@ -14,15 +14,17 @@ inline const juce::Colour red    = c (0xffE63946), orange = c (0xffF77F00), yell
 
 struct Fonts
 {
-    juce::Typeface::Ptr title, body;
+    juce::Typeface::Ptr title, body, sign;
     Fonts()
     {
+        sign  = juce::Typeface::createSystemTypefaceFor (BinaryData::RyeRegular_ttf, (size_t) BinaryData::RyeRegular_ttfSize);
         title = juce::Typeface::createSystemTypefaceFor (BinaryData::LuckiestGuyRegular_ttf, (size_t) BinaryData::LuckiestGuyRegular_ttfSize);
         body  = juce::Typeface::createSystemTypefaceFor (BinaryData::FredokaSemiBold_ttf, (size_t) BinaryData::FredokaSemiBold_ttfSize);
     }
     static Fonts& get() { static Fonts f; return f; }
 };
 inline juce::Font titleFont (float h) { return juce::Font (juce::FontOptions (Fonts::get().title).withHeight (h)); }
+inline juce::Font signFont (float h)  { return juce::Font (juce::FontOptions (Fonts::get().sign).withHeight (h)); }
 inline juce::Font bodyFont (float h)  { return juce::Font (juce::FontOptions (Fonts::get().body).withHeight (h)); }
 
 // text with a little dark drop shadow, the way letters are printed on toys

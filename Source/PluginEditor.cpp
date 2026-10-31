@@ -1,51 +1,10 @@
 #include "PluginEditor.h"
+#include "Knob.h"
+#include "PresetScreen.h"
+#include "AutoToonPage.h"
 
 using namespace vt;
 using APVTS = juce::AudioProcessorValueTreeState;
-
-// ====================================================================== knob with label + value
-class ToyKnob : public juce::Component
-{
-public:
-    ToyKnob (APVTS& st, const char* pid, const juce::String& label, juce::Colour accent, bool bipolar = false)
-        : text (label), param (st.getParameter (pid))
-    {
-        slider.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
-        slider.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
-        slider.setColour (juce::Slider::rotarySliderFillColourId, accent);
-        slider.getProperties().set ("bipolar", bipolar);
-        slider.setRotaryParameters (juce::MathConstants<float>::pi * 1.22f, juce::MathConstants<float>::pi * 2.78f, true);
-        slider.setPopupDisplayEnabled (false, false, nullptr);
-        slider.setTooltip (param->getName (64) + " - drag, or double-click to reset");
-        attachment = std::make_unique<APVTS::SliderAttachment> (st, pid, slider);
-        slider.setDoubleClickReturnValue (true, param->convertFrom0to1 (param->getDefaultValue()));
-        slider.onValueChange = [this] { repaint(); };
-        addAndMakeVisible (slider);
-    }
-
-    void paint (juce::Graphics& g) override
-    {
-        auto r = getLocalBounds().toFloat();
-        g.setFont (toy::bodyFont (13.5f));
-        toy::shadowText (g, text, r.removeFromTop (17.0f), juce::Justification::centred);
-        g.setFont (toy::bodyFont (12.0f));
-        toy::shadowText (g, param->getCurrentValueAsText(), r.removeFromBottom (15.0f), juce::Justification::centred,
-                         toy::cream, 1.0f);
-    }
-    void resized() override
-    {
-        auto r = getLocalBounds().withTrimmedTop (17).withTrimmedBottom (15);
-        const int s = std::min (r.getWidth(), r.getHeight());
-        slider.setBounds (r.withSizeKeepingCentre (s, s));
-    }
-
-    juce::Slider slider;
-
-private:
-    juce::String text;
-    juce::RangedAudioParameter* param;
-    std::unique_ptr<APVTS::SliderAttachment> attachment;
-};
 
 // ====================================================================== sample drop zone
 class SampleZone : public juce::Component, public juce::FileDragAndDropTarget, public juce::SettableTooltipClient, private juce::Timer
@@ -225,111 +184,6 @@ private:
     int holdTicks = 0;
 };
 
-// ====================================================================== preset screen
-class PresetScreen : public juce::Component, public juce::SettableTooltipClient, private juce::Timer
-{
-public:
-    explicit PresetScreen (VocalTuneProcessor& p) : proc (p)
-    {
-        setMouseCursor (juce::MouseCursor::PointingHandCursor);
-        setTooltip ("Click for all presets. Arrows step through them.");
-        startTimerHz (8);
-    }
-
-    void paint (juce::Graphics& g) override
-    {
-        auto r = getLocalBounds().toFloat().reduced (1.0f);
-        g.setColour (juce::Colours::black.withAlpha (0.25f));
-        g.fillRoundedRectangle (r.translated (0, 3), 14.0f);
-        g.setColour (toy::brown);
-        g.fillRoundedRectangle (r, 14.0f);
-        auto screen = r.reduced (5.0f);
-        g.setColour (toy::cream);
-        g.fillRoundedRectangle (screen, 10.0f);
-
-        for (int side = 0; side < 2; ++side)
-        {
-            auto a = arrowArea (side).toFloat();
-            g.setColour (hover == side ? toy::orange : toy::orange.withAlpha (0.85f));
-            g.fillRoundedRectangle (a, 8.0f);
-            juce::Path t;
-            const float cx = a.getCentreX(), cy = a.getCentreY();
-            if (side == 0) t.addTriangle (cx + 5, cy - 7, cx + 5, cy + 7, cx - 6, cy);
-            else           t.addTriangle (cx - 5, cy - 7, cx - 5, cy + 7, cx + 6, cy);
-            g.setColour (juce::Colours::white);
-            g.fillPath (t);
-        }
-        auto text = screen.reduced (44.0f, 2.0f);
-        g.setColour (toy::brown.withAlpha (0.75f));
-        g.setFont (toy::bodyFont (12.5f));
-        g.drawText (category().toUpperCase(), text.removeFromTop (17.0f), juce::Justification::centredBottom, false);
-        g.setColour (toy::ink);
-        g.setFont (toy::titleFont (25.0f));
-        g.drawFittedText (proc.getPresetName(), text.toNearestInt(), juce::Justification::centred, 1, 0.7f);
-    }
-
-    void mouseMove (const juce::MouseEvent& e) override
-    {
-        const int h = arrowArea (0).contains (e.getPosition()) ? 0 : arrowArea (1).contains (e.getPosition()) ? 1 : -1;
-        if (h != hover) { hover = h; repaint(); }
-    }
-    void mouseExit (const juce::MouseEvent&) override { hover = -1; repaint(); }
-    void mouseUp (const juce::MouseEvent& e) override
-    {
-        if (arrowArea (0).contains (e.getPosition())) { proc.stepPreset (-1); return; }
-        if (arrowArea (1).contains (e.getPosition())) { proc.stepPreset (1); return; }
-        showMenu();
-    }
-
-    std::function<void()> onSaveRequested;
-
-private:
-    juce::Rectangle<int> arrowArea (int side) const
-    {
-        return side == 0 ? juce::Rectangle<int> (10, 10, 32, getHeight() - 20)
-                         : juce::Rectangle<int> (getWidth() - 42, 10, 32, getHeight() - 20);
-    }
-    juce::String category() const
-    {
-        const auto n = proc.getPresetName();
-        for (auto& e : proc.presetList()) if (e.name == n) return e.category;
-        return "Custom";
-    }
-    void showMenu()
-    {
-        const auto list = proc.presetList();
-        juce::PopupMenu menu;
-        std::map<juce::String, juce::PopupMenu> subs;
-        juce::StringArray order;
-        for (int i = 0; i < list.size(); ++i)
-        {
-            order.addIfNotAlreadyThere (list[i].category);
-            subs[list[i].category].addItem (i + 1, list[i].name, true, list[i].name == proc.getPresetName());
-        }
-        for (auto& cat : order)
-            menu.addSubMenu (cat == "Sample" ? juce::String ("Sample (drop a sound first)") : cat, subs[cat]);
-        if (! order.contains ("User")) menu.addItem (-10, "User (save one to start)", false);
-        menu.addSeparator();
-        menu.addItem (-1, "Save preset...");
-        menu.addItem (-2, "Show presets folder");
-        menu.showMenuAsync (juce::PopupMenu::Options().withTargetComponent (this).withMinimumWidth (getWidth()),
-            [this, list] (int r)
-            {
-                if (r > 0 && r <= list.size()) proc.applyPreset (list[r - 1]);
-                else if (r == -1 && onSaveRequested) onSaveRequested();
-                else if (r == -2) { auto f = userPresetFolder(); f.createDirectory(); f.startAsProcess(); }
-            });
-    }
-    void timerCallback() override
-    {
-        if (proc.getPresetName() != shown) { shown = proc.getPresetName(); repaint(); }
-    }
-
-    VocalTuneProcessor& proc;
-    juce::String shown;
-    int hover = -1;
-};
-
 // ====================================================================== dice / mutate / save buttons
 class IconButton : public juce::Button
 {
@@ -491,6 +345,9 @@ public:
         mutateBtn.onClick = [this] { proc.mutateCurrent(); };
         saveBtn.onClick = [this] { askToSave(); };
         for (auto* b : { &diceBtn, &mutateBtn, &saveBtn }) addAndMakeVisible (b);
+        toonBtn = createAutoToonButton();
+        toonBtn->onClick = [this] { if (onAutoToon) onAutoToon(); };
+        addAndMakeVisible (*toonBtn);
 
         layout();
     }
@@ -498,8 +355,11 @@ public:
     void paint (juce::Graphics& g) override
     {
         if (background.isNull()) renderBackground();
-        g.drawImageAt (background, 0, 0);
+        g.setImageResamplingQuality (juce::Graphics::highResamplingQuality);
+        g.drawImageTransformed (background, juce::AffineTransform::scale (0.5f));
     }
+
+    std::function<void()> onAutoToon;
 
 private:
     struct Block { juce::Rectangle<float> r; juce::Colour col; juce::String title, sub; };
@@ -549,7 +409,8 @@ private:
 
         // tune & robot
         const int ux = 790, uw = 236;
-        blocks.push_back ({ { (float) ux, (float) top, (float) uw, (float) rowH }, toy::green, "TUNE & ROBOT", "snap to a key" });
+        blocks.push_back ({ { (float) ux, (float) top, (float) uw, (float) rowH }, toy::green, "TUNE", "" });
+        toonBtn->setBounds (ux + uw - 108, top + 8, 100, 30);
         tuner.setBounds (ux + 12, top + 42, uw - 24, 74);
         captions.push_back ({ { (float) ux + 12, (float) top + 124, 70, 14 }, "KEY" });
         captions.push_back ({ { (float) ux + 88, (float) top + 124, 136, 14 }, "SCALE" });
@@ -585,8 +446,9 @@ private:
     void renderBackground()
     {
         const int W = VocalTuneEditor::baseW, H = VocalTuneEditor::baseH;
-        background = juce::Image (juce::Image::ARGB, W, H, true);
+        background = juce::Image (juce::Image::ARGB, W * 2, H * 2, true);
         juce::Graphics g (background);
+        g.addTransform (juce::AffineTransform::scale (2.0f));
         auto all = juce::Rectangle<float> (0, 0, (float) W, (float) H);
 
         // the wooden toy chest
@@ -701,6 +563,7 @@ private:
     TunerDisplay tuner;
     PresetScreen presets;
     IconButton diceBtn, mutateBtn, saveBtn;
+    std::unique_ptr<juce::Button> toonBtn;
     std::vector<Block> blocks;
     std::vector<std::pair<juce::Rectangle<float>, juce::String>> captions;
     juce::Image background;
@@ -714,7 +577,11 @@ VocalTuneEditor::VocalTuneEditor (VocalTuneProcessor& p) : AudioProcessorEditor 
     setLookAndFeel (&lnf);
     content = std::make_unique<VocalTuneContent> (p);
     content->setLookAndFeel (&lnf);
-    addAndMakeVisible (*content);
+    addChildComponent (*content);
+    toon = createAutoToonPage (p, [this] { showPage (0); });
+    addChildComponent (*toon);
+    content->onAutoToon = [this] { showPage (1); };
+    showPage (proc.page);
     setResizable (true, true);
     setResizeLimits ((int) (baseW * 0.7), (int) (baseH * 0.7), (int) (baseW * 1.8), (int) (baseH * 1.8));
     getConstrainer()->setFixedAspectRatio ((double) baseW / baseH);
@@ -727,12 +594,22 @@ VocalTuneEditor::~VocalTuneEditor()
     setLookAndFeel (nullptr);
 }
 
+void VocalTuneEditor::showPage (int page)
+{
+    proc.page = juce::jlimit (0, 1, page);
+    content->setVisible (proc.page == 0);
+    toon->setVisible (proc.page == 1);
+}
+
 void VocalTuneEditor::paint (juce::Graphics& g) { g.fillAll (toy::brown); }
 
 void VocalTuneEditor::resized()
 {
     const float s = (float) getWidth() / (float) baseW;
-    content->setBounds (0, 0, baseW, baseH);
-    content->setTransform (juce::AffineTransform::scale (s));
+    for (auto* c : { (juce::Component*) content.get(), toon.get() })
+    {
+        c->setBounds (0, 0, baseW, baseH);
+        c->setTransform (juce::AffineTransform::scale (s));
+    }
     proc.editorScale = s;
 }

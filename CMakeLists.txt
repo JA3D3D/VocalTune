@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 # VocalTune: toy box voice lab. Voice changer + talk box + tune, as VST3 / AU.
-project(VOCALTUNE VERSION 1.0.0 LANGUAGES C CXX)
+project(VOCALTUNE VERSION 1.1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,11 +40,13 @@ juce_add_plugin(VocalTune
 
 juce_add_binary_data(VocalTuneResources SOURCES
     Resources/fonts/Fredoka-SemiBold.ttf
-    Resources/fonts/LuckiestGuy-Regular.ttf)
+    Resources/fonts/LuckiestGuy-Regular.ttf
+    Resources/fonts/Rye-Regular.ttf)
 
 set(VT_SOURCES
     Source/PluginProcessor.cpp
     Source/PluginEditor.cpp
+    Source/AutoToonPage.cpp
     Source/Presets.cpp
     Source/dsp/SpectralEngine.cpp)
 
@@ -79,7 +81,7 @@ if(VT_BUILD_TESTS)
     target_include_directories(VocalTuneTests PRIVATE Source)
     target_compile_definitions(VocalTuneTests PRIVATE ${VT_DEFS}
         JUCE_MODAL_LOOPS_PERMITTED=1
-        JucePlugin_Name="VocalTune" JucePlugin_VersionString="1.0.0")
+        JucePlugin_Name="VocalTune" JucePlugin_VersionString="1.1.0")
     if(NOT APPLE)
         target_compile_definitions(VocalTuneTests PRIVATE ${VT_LINUX_DEFS})
     endif()

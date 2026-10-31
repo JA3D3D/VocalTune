@@ -37,7 +37,7 @@ jobs:
       - name: Plugin tests
         run: |
           set -o pipefail
-          ./build/VocalTuneTests_artefacts/Release/VocalTuneTests --screenshot screenshot.png 2>&1 | tee plugin-tests.log
+          ./build/VocalTuneTests_artefacts/Release/VocalTuneTests --screenshot screenshot.png --screenshot-toon auto-toon.png 2>&1 | tee plugin-tests.log
 
       # Apple Developer ID certificates (both in one .p12) go into a temporary keychain
       - name: Load signing certificates
@@ -124,6 +124,7 @@ jobs:
             dist/*.pkg
             *.log
             screenshot.png
+            auto-toon.png
 
       # The finished zip also goes to the "builds" branch, so it can be fetched with plain git.
       - name: Publish to the builds branch
@@ -137,7 +138,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp ../dist/*.zip ../dist/*.pkg . 2>/dev/null || true
           mkdir -p logs && cp ../*.log logs/ 2>/dev/null || true
-          cp ../screenshot.png . 2>/dev/null || true
+          cp ../screenshot.png ../auto-toon.png . 2>/dev/null || true
           { echo "commit: $GITHUB_SHA"; echo "built: $(date -u +%Y-%m-%dT%H:%M:%SZ)"; echo "juce: $JUCE_VERSION"; } > BUILD.txt
           git add -A
           git commit -qm "VocalTune build for $GITHUB_SHA"

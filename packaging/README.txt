@@ -1,4 +1,4 @@
-VOCALTUNE 1.0 for Mac
+VOCALTUNE 1.1 for Mac
 Toy box voice lab: voice changer, talk box and tune, inside Ableton Live
 
 VST3 and Audio Unit. Universal: runs natively on Apple Silicon and Intel Macs.
@@ -25,8 +25,8 @@ THE TOY BOX
 Put VocalTune on a track with a voice: a vocal clip, a sample, or a live mic
 (arm the track and set Monitor to In).
 
-PRESETS   Click the screen for 67 presets in Classic, Talk, Sample, Tune and
-          Weird. The arrows step through them.
+PRESETS   Click the screen for 77 presets in Classic, Talk, Sample, Tune,
+          Auto Toon and Weird. The arrows step through them.
 DICE      A brand new random voice every click.
 MUTATE    Nudges the current sound a little. Keep clicking to drift.
 SAVE      Saves your sound (and its sample) as your own preset, in
@@ -61,6 +61,25 @@ TUNE & ROBOT  The screen shows the note you sing and the note that comes out.
           higher = natural. ROBOT flattens everything to one NOTE.
           Tune also steers the talk box, so talk + tune = instant talkbox
           hooks in key.
+
+AUTO TOON  Click the AUTO TOON sign in the TUNE block to flip VocalTune over
+          to its cartoon side: a full auto-tune. The TOY BOX arrow flips back.
+          Both sides are the same plugin and work together.
+          PITCH graph  the red dashes are what you sang, the black line is
+                       what comes out. Target notes have names on the left.
+          THE SINGER   shows the note coming out and how far off you sang.
+          KEY + SCALE  the notes to snap to. Or click piano keys to pick your
+                       own notes (the scale switches to Custom).
+          STRENGTH     how hard it pulls you onto the notes (0 = off).
+          SPEED        retune speed. 0 ms = the hard robot snap; 20-50 ms =
+                       pop; 80+ ms = natural.
+          HUMANIZE     long held notes get a gentler retune than quick ones.
+          FLEX         only fixes notes you're near; slides and scoops stay.
+          VIBRATO      0% = dead straight notes, 100% = your own vibrato,
+                       200% = extra wobble.
+          PITCH, THROAT  transpose and formant, same as on the toy box side.
+          Try the "Auto Toon" presets: Hard Toon, Pop Polish, Natural Lift,
+          Robo Rapper, Trap Toon and more.
 
 EFFECTS   BUZZ (ring mod), CRUSH (bits + rate), GRIT (distortion) + TONE,
           METAL (tin can), RADIO (phone/megaphone), CHOIR (stereo doubles),

@@ -61,7 +61,19 @@ void VocalTuneProcessor::readSettings (EngineSettings& e, FxSettings& f) const
     e.tune = p (id::tune);
     e.tuneSpeedMs = p (id::tuneSpeed);
     e.key = juce::roundToInt (p (id::key));
-    e.scaleMask = scales()[(size_t) juce::jlimit (0, (int) scales().size() - 1, juce::roundToInt (p (id::scale)))].mask;
+    const int scaleIndex = juce::jlimit (0, (int) scales().size() - 1, juce::roundToInt (p (id::scale)));
+    e.scaleMask = scales()[(size_t) scaleIndex].mask;
+    if (scaleIndex == (int) scales().size() - 1)   // Custom: the piano's notes, absolute pitch classes
+    {
+        e.key = 0;
+        e.scaleMask = 0;
+        for (int pc = 0; pc < 12; ++pc)
+            if (raw.at (id::note (pc).toStdString())->load() > 0.5f) e.scaleMask |= 1 << pc;
+        if (e.scaleMask == 0) e.scaleMask = 0xFFF;
+    }
+    e.humanize = p (id::humanize);
+    e.flex = p (id::flex);
+    e.vibratoKeep = p (id::vibratoKeep);
     e.robot = p (id::robot);
     e.robotNote = p (id::robotNote);
     e.talk = p (id::talk);
@@ -263,6 +275,7 @@ std::unique_ptr<juce::XmlElement> VocalTuneProcessor::makeStateXml (bool include
     xml->setAttribute ("preset", presetName);
     xml->setAttribute ("presetIndex", presetIndex);
     xml->setAttribute ("editorScale", editorScale);
+    xml->setAttribute ("page", page);
     xml->addChildElement (state.copyState().createXml().release());
 
     if (auto s = getSample(); includeSample && s != nullptr)
@@ -293,6 +306,7 @@ void VocalTuneProcessor::restoreFromXml (const juce::XmlElement& xml, bool keepS
     presetName = xml.getStringAttribute ("preset", presetName);
     presetIndex = xml.getIntAttribute ("presetIndex", -1);
     editorScale = (float) xml.getDoubleAttribute ("editorScale", editorScale);
+    page = xml.getIntAttribute ("page", page);
 
     if (auto* e = xml.getChildByName ("Sample"))
     {
@@ -405,6 +419,31 @@ void VocalTuneProcessor::mutateCurrent()
     mutate (state, rng);
     if (! presetName.endsWith ("*")) setPresetName (presetName + "*", -1);
     else setPresetName (presetName, -1);
+}
+
+int VocalTuneProcessor::absoluteNoteMask() const
+{
+    EngineSettings e; FxSettings f;
+    readSettings (e, f);
+    int m = 0;
+    for (int pc = 0; pc < 12; ++pc)
+        if ((e.scaleMask >> (((pc - e.key) % 12 + 12) % 12)) & 1) m |= 1 << pc;
+    return m;
+}
+
+void VocalTuneProcessor::toggleNote (int pc)
+{
+    const int customIndex = (int) scales().size() - 1;
+    int mask = absoluteNoteMask();
+    if (juce::roundToInt (p (id::scale)) != customIndex)
+    {
+        for (int i = 0; i < 12; ++i)
+            if (auto* prm = state.getParameter (id::note (i))) prm->setValueNotifyingHost (((mask >> i) & 1) ? 1.0f : 0.0f);
+        if (auto* sc = state.getParameter (id::scale)) sc->setValueNotifyingHost (sc->convertTo0to1 ((float) customIndex));
+    }
+    mask ^= 1 << pc;
+    if (mask == 0) return;   // keep at least one note
+    if (auto* prm = state.getParameter (id::note (pc))) prm->setValueNotifyingHost (((mask >> pc) & 1) ? 1.0f : 0.0f);
 }
 
 juce::AudioProcessorEditor* VocalTuneProcessor::createEditor() { return new VocalTuneEditor (*this); }

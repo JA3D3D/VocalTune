@@ -49,11 +49,16 @@ public:
     void dice();
     void mutateCurrent();
     juce::String getPresetName() const { return presetName; }
+
+    // ---- Auto Toon piano (message thread)
+    int absoluteNoteMask() const;       // bit n = pitch class n (C = 0) is a target note
+    void toggleNote (int pitchClass);   // switches the scale to Custom on first use
     std::function<void()> onPresetChanged;    // set by the editor
 
     juce::AudioProcessorValueTreeState state;
     vt::SpectralEngine engine;
     float editorScale = 1.0f;
+    int page = 0;   // 0 toy box, 1 Auto Toon
 
 private:
     void timerCallback() override;
